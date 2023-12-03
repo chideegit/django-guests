@@ -52,7 +52,7 @@ cd generic_name && Scripts\activate
 
 3. Clone the project's github repo and cd into project
 ```bash
-git clone https://github.com/chideegit/django-guest.git
+git clone https://github.com/chideegit/django-guests.git
 
 cd django-guest
 ```

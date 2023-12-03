@@ -18,14 +18,14 @@ Thank you for considering contributing to this awesome project! We appreciate yo
 
 If you come across a bug or unexpected behavior, please help us by following these steps:
 
-1. Check if the issue has already been reported by searching the [GitHub issues](https://github.com/chideegit/django-guest.git).
+1. Check if the issue has already been reported by searching the [GitHub issues](https://github.com/chideegit/django-guests.git).
 2. If not, open a new issue. Be sure to include a clear title, description, and steps to reproduce the bug.
 
 ### Suggesting Enhancements
 
 Your ideas for making this project better are welcome! Follow these steps:
 
-1. Check if the enhancement has already been suggested by searching the [GitHub issues](https://github.com/chideegit/django-guest.git).
+1. Check if the enhancement has already been suggested by searching the [GitHub issues](https://github.com/chideegit/django-guests.git).
 2. If not, open a new issue. Provide a clear title and description of your enhancement suggestion.
 
 ### Pull Requests
