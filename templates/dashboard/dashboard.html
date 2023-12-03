@@ -15,10 +15,9 @@
 
 <div class="row">
     <div class="col-md-4">
-        <form class="p-4 p-md-5 border rounded-3 bg-light" method="POST">
-            {% csrf_token %}
+        <form class="p-4 p-md-5 border rounded-3 bg-light" method="GET" action="{% url 'search-guests' %}">
             <div class="form-floating mb-3">
-                <input type="input" name="username" class="form-control" id="floatingInput">
+                <input type="input" name="search" class="form-control" id="floatingInput">
                 <label for="floatingInput">Search Guest</label>
             </div>
             <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
@@ -27,17 +26,17 @@
     <div class="col-md-4">
         <div class="card border rounded-3 bg-light p-4">
             <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <h5 class="card-title">Total Guests today</h5>
+                <p class="card-text">You've had <b>{{sig.count}}</b> Guests come into your office building today so far. </p>
+                <a href="{% url 'signed-in-guests' %}" class="btn btn-primary">View all Signed-in Guests</a>
             </div>
         </div>
     </div>
     <div class="col-md-4">
         <div class="card border rounded-3 bg-light p-4">
             <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <h5 class="card-title">Guest History</h5>
+                <p class="card-text">Since initializing, you've had <b>{{guests.count}}</b> guests come and leave your office building. </p>
                 <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
         </div>

@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q 
 from .form import * 
 from .models import * 
 
@@ -80,3 +81,15 @@ def export_csv(request):
                          guest.phone_number, guest.address, guest.to_see, guest.time_in, guest.time_out, guest.has_signed_out])
     return response
     # https://docs.djangoproject.com/en/4.2/howto/outputting-csv/
+
+@login_required
+def search_guests(request):
+    if request.GET: # write your form name here      
+        search_query =  request.GET.get('search')      
+        try:
+            search_query = Guest.objects.filter(Q(first_name__icontains=search_query) | Q(surname__icontains=search_query))
+            return render(request,'guest/search.html',{'search_query':search_query})
+        except:
+            return render(request,'guest/search.html',{'search_query':search_query})
+    else:
+        return render(request, 'guest/search.html',{'search_query':search_query})

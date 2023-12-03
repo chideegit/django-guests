@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">First Name</th>
+            <th scope="col">Surname</th>
+            <th scope="col">Email ID</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Address</th>
+            <th scope="col">To See</th>
+            <th scope="col">Time In</th>
+            <th scope="col">Time Out</th>
+            <th scope="col">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for guest in search_query %}
+        <tr>
+            <td>{{guest.first_name}} <a href="{% url 'update-guest' guest.pk %}"><i class="fa fa-pencil text-primary ms-1"></i></a></td>
+            <td>{{guest.surname}}</td>
+            <td>{{guest.email_id}}</td>
+            <td>{{guest.phone_number}}</td>
+            <td>{{guest.address}}</td>
+            <td>{{guest.to_see}}</td>
+            <td>{{guest.time_in}}</td>
+            {% if guest.time_out %}
+            <td>{{guest.time_out}}</td>
+            {% else %}
+            <td><a href="{% url 'guest-sign-out' guest.pk %}">Sign out Guest</a></td>
+            {% endif %}
+            {% if not guest.has_signed_out %}
+            <td><span class="badge bg-success">Active</span></td>
+            {% else %}
+            <td><span class="badge bg-danger">Signed Out</span></td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}
