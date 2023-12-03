@@ -1,4 +1,6 @@
+import csv
 import datetime
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -64,3 +66,17 @@ def guest_sign_out(request, pk):
     guest.save()
     messages.success(request, 'Guest has been signed out and all info updated!')
     return redirect('dashboard')
+
+@login_required
+def export_csv(request):
+    response = HttpResponse(
+        content_type="text/csv",
+        headers={"Content-Disposition": 'attachment; filename="guest_list.csv"'},
+    )
+    writer = csv.writer(response)
+    writer.writerow(["First Name", "Surname", "Email", "Phone", "Address", "To See", "Time In", "Time Out", "Signed Out?"])
+    for guest in Guest.objects.all():
+        writer.writerow([guest.first_name, guest.surname, guest.email_id, 
+                         guest.phone_number, guest.address, guest.to_see, guest.time_in, guest.time_out, guest.has_signed_out])
+    return response
+    # https://docs.djangoproject.com/en/4.2/howto/outputting-csv/

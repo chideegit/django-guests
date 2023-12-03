@@ -30,7 +30,7 @@
             {% else %}
             <td><a href="{% url 'guest-sign-out' guest.pk %}" class="btn btn-outline-warning">Sign out Guest</a></td>
             {% endif %}
-            {% if guest.has_signed_out %}
+            {% if not guest.has_signed_out %}
             <td><span class="badge bg-success">Active</span></td>
             {% else %}
             <td><span class="badge bg-danger">Signed Out</span></td>
