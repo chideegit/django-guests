@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block heading %} Welcome Back! {% endblock heading %}
+
+{% block content %}
+
+<form class="p-4 p-md-5 border rounded-3 bg-light">
+    <div class="form-floating mb-3">
+        {% render_field form.first_name class="form-control" %}
+        <label for="floatingInput">First Name</label>
+    </div>
+    <div class="form-floating mb-3">
+        {% render_field form.surname class="form-control" %}
+        <label for="floatingInput">Surname</label>
+    </div>
+    <div class="form-floating mb-3">
+        {% render_field form.email_id class="form-control" %}
+        <label for="floatingInput">Email ID</label>
+    </div>
+    <div class="form-floating mb-3">
+        {% render_field form.phone_number class="form-control" %}
+        <label for="floatingInput">Phone Number</label>
+    </div>
+    <div class="form-floating mb-3">
+        {% render_field form.address class="form-control" %}
+        <label for="floatingInput">Residential Address</label>
+    </div>
+    <div class="form-floating mb-3">
+        {% render_field form.to_see class="form-control" %}
+        <label for="floatingInput">To See Who?</label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
+</form>
+
+{% endblock content %}
