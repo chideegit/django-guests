@@ -54,7 +54,7 @@ cd generic_name && Scripts\activate
 ```bash
 git clone https://github.com/chideegit/django-guests.git
 
-cd django-guest
+cd django-guests
 ```
 
 4. Install all the dependencies contained in the [requirements.txt](./requirements.txt) file. 
