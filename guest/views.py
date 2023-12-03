@@ -4,7 +4,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q 
+from django.db.models import Q
+from django.core.mail import send_mail
 from .form import * 
 from .models import * 
 
@@ -65,6 +66,17 @@ def guest_sign_out(request, pk):
     guest.has_signed_out = True
     guest.time_out = datetime.datetime.now()
     guest.save()
+    # send an email to signed out guest
+    subject = 'THANK YOU FOR STOPPING BY'
+    message = f"""
+                Hello {guest.first_name}, thank you for stopping by and we do hope you enjoyed the ambience
+                and everything in-between! We can't wait to have you back, but in the meantime, you can 
+                check out website (www.django-guest.com) for updates.
+                Thank you once again for your time. 
+            """
+    email_from = 'no-reply@django-guest.com'
+    recipient_list = [guest.email_id, ]
+    send_mail(subject, message, email_from, recipient_list)
     messages.success(request, 'Guest has been signed out and all info updated!')
     return redirect('dashboard')
 
