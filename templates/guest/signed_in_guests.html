@@ -18,7 +18,7 @@
     <tbody>
         {% for guest in guests %}
         <tr>
-            <td>{{guest.first_name}}</td>
+            <td>{{guest.first_name}} <a href="{% url 'update-guest' guest.pk %}"><i class="fa fa-pencil text-primary ms-1"></i></a></td>
             <td>{{guest.surname}}</td>
             <td>{{guest.email_id}}</td>
             <td>{{guest.phone_number}}</td>
@@ -28,9 +28,9 @@
             {% if guest.time_out %}
             <td>{{guest.time_out}}</td>
             {% else %}
-            <td><a href="{% url 'guest-sign-out' guest.pk %}" class="btn btn-outline-warning">Sign out Guest</a></td>
+            <td><a href="{% url 'guest-sign-out' guest.pk %}">Sign out Guest</a></td>
             {% endif %}
-            {% if guest.has_signed_out %}
+            {% if not guest.has_signed_out %}
             <td><span class="badge bg-success">Active</span></td>
             {% else %}
             <td><span class="badge bg-danger">Signed Out</span></td>

@@ -20,14 +20,21 @@ def register_user(request):
     return render(request, 'accounts/register.html', context)
 
 def login_user(request):
+    next = ''
+
+    if request.GET:
+        next = request.GET['next']
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
         if user is not None and user.is_active:
             login(request, user)
-            messages.success(request, f'You are logged in as {user}')
-            return redirect('dashboard')
+            if next == '':
+                messages.success(request, f'You are logged in as {user}')
+                return redirect('dashboard')
+            else:
+                return redirect(next)
         else:
             messages.warning(request, 'Something went wrong. Please check form errors')
             return redirect('login')
